@@ -1,8 +1,7 @@
-<<<<<<< HEAD
 # snowplow
 This repository contains scripts to interact with ServiceNow deployments.
 =======
-<<<<<<< HEAD
+
 # snowplow
 This repository contains scripts to interact with ServiceNow deployments.
 =======
@@ -45,5 +44,3 @@ python3 query_api.py <instance_url> <cookies_file> <api_endpoint> <user_token_fi
 
 Example:
 python3 query_api.py https://your_instance.service-now.com cookies.json /api/now/table/sys_user user_token.txt
->>>>>>> 37dc502 (Initial commit)
->>>>>>> 81e580c (Initial commit)
