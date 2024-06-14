@@ -1,10 +1,3 @@
-# snowplow
-This repository contains scripts to interact with ServiceNow deployments.
-=======
-
-# snowplow
-This repository contains scripts to interact with ServiceNow deployments.
-=======
 Snowplow
 ========
 
