@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 Snowplow
 ========
 
@@ -5,12 +6,14 @@ This repository contains two scripts to interact with ServiceNow deployments.
 
 Scripts
 -------
+=======
+This repository contains scripts to interact with ServiceNow deployments.
+>>>>>>> d8fe13f (Added incident_query)
 
 - `get_tokens.py`: This script automates the process of obtaining session cookies and tokens from ServiceNow.
 - `query_api.py`: This script makes authenticated API requests to ServiceNow using the obtained tokens and cookies.
 
 Installation
-------------
 
 1. Clone the repository:
 
@@ -23,15 +26,10 @@ cd snowplow
 pip install -r requirements.txt
 
 Usage
------
-
-### Get Tokens
 
 python get_tokens.py <login_url> <username> <password>
 
 This will save the session cookies to `cookies.json` and the user token to `user_token.txt`.
-
-### Query API
 
 python3 query_api.py <instance_url> <cookies_file> <api_endpoint> <user_token_file>
 
