@@ -2,7 +2,7 @@ from pysnc import ServiceNowClient
 
 # Configuration
 instance = 'https://yoursite.servicenowservices.com'  # Replace with your ServiceNow instance
-username = 'your_user_name  # Replace with your username
+username = 'your_user_name'  # Replace with your username
 password = 'your_password'  # Replace with your password
 
 # Create the ServiceNow client using basic authentication
