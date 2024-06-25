@@ -1,12 +1,35 @@
+import requests
+import http
 from pysnc import ServiceNowClient
 
+# requests Authentication class for ServiceNow Rest API token authentication
+# https://docs.python-requests.org/en/latest/user/authentication/#new-forms-of-authentication
+# https://developer.servicenow.com/blog.do?p=/post/debugging-inbound-rest-calls-and-the-business-rulesacls-that-impact-those-calls/#using-external-api-testing-tools
+class TokenAuth(requests.auth.AuthBase):
+    def __init__(self, user_token, jsession_id):
+        self.user_token  = user_token
+        self.jsession_id = jsession_id
+
+    def __call__(self, r):
+        # set token header for request
+        r.headers['X-Usertoken'] = self.user_token
+
+        # add session cookie to request
+        req       = requests.get(r.url)
+        cookiejar = http.cookiejar.CookieJar()
+        cookie    = req.cookies.set('JSESSIONID', self.jsession_id)
+        cookiejar.set_cookie(cookie)
+        r.prepare_cookies(cookiejar)
+
+        return r
+
 # Configuration
-instance = 'https://yoursite.servicenowservices.com'  # Replace with your ServiceNow instance
-username = 'your_user_name'  # Replace with your username
-password = 'your_password'  # Replace with your password
+instance    = 'https://yoursite.servicenowservices.com'  # Replace with your ServiceNow instance
+user_token  = 'some_usertoken_here'   # Replace with your `X-Usertoken` header
+jsession_id = 'some_jsessionid_here'  # Replace with your `JSESSIONID` cookie
 
 # Create the ServiceNow client using basic authentication
-client = ServiceNowClient(instance, (username, password))
+client = ServiceNowClient(instance, TokenAuth(user_token, jsession_id))
 
 def fetch_incidents_with_keyword(keyword):
     try:
